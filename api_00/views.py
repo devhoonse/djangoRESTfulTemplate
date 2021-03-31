@@ -9,8 +9,8 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from api_00.models import Records
-from api_00.serializers import UserSerializer, GroupSerializer, RecordsSerializer
+from api_00.models import Record
+from api_00.serializers import UserSerializer, GroupSerializer, RecordSerializer
 
 # Create your views here.
 
@@ -26,13 +26,13 @@ class GroupViewSet(viewsets.ModelViewSet):
 
 
 # VIEW FOR SAMPLE MODEL
-class RecordsView(APIView):
-    model = Records
-    queryset = Records.objects.all().order_by('-created')
-    serializer_class = RecordsSerializer
+class RecordView(APIView):
+    model = Record
+    queryset = Record.objects.all().order_by('-created')
+    serializer_class = RecordSerializer
 
     def post(self, request):
-        user_serializer = RecordsSerializer(data=request.data)  # Request 의 data 를 Serializer 로 변환
+        user_serializer = RecordSerializer(data=request.data)  # Request 의 data 를 Serializer 로 변환
 
         if user_serializer.is_valid():
             user_serializer.save()  # Serializer 의 유효성 검사를 한 뒤 DB에 저장
@@ -42,12 +42,12 @@ class RecordsView(APIView):
 
     def get(self, request, **kwargs):
         if kwargs.get('rid') is None:
-            user_queryset = Records.objects.all()  # 모든 Record 의 정보를 불러온다.
-            user_queryset_serializer = RecordsSerializer(user_queryset, many=True)
+            user_queryset = Record.objects.all()  # 모든 Record 의 정보를 불러온다.
+            user_queryset_serializer = RecordSerializer(user_queryset, many=True)
             return Response(user_queryset_serializer.data, status=status.HTTP_200_OK)
         else:
             rid = kwargs.get('rid')
-            user_serializer = RecordsSerializer(Records.objects.get(rid=rid))  # rid 에 해당하는 Record 의 정보를 불러온다
+            user_serializer = RecordSerializer(Record.objects.get(rid=rid))  # rid 에 해당하는 Record 의 정보를 불러온다
             return Response(user_serializer.data, status=status.HTTP_200_OK)
 
     def put(self, request, **kwargs):
@@ -55,9 +55,9 @@ class RecordsView(APIView):
             return Response("invalid request", status=status.HTTP_400_BAD_REQUEST)
         else:
             rid = kwargs.get('rid')
-            user_object = Records.objects.get(rid=rid)
+            user_object = Record.objects.get(rid=rid)
 
-            update_user_serializer = RecordsSerializer(user_object, data=request.data)
+            update_user_serializer = RecordSerializer(user_object, data=request.data)
             if update_user_serializer.is_valid():
                 update_user_serializer.save()
                 return Response(update_user_serializer.data, status=status.HTTP_200_OK)
@@ -69,6 +69,6 @@ class RecordsView(APIView):
             return Response("invalid request", status=status.HTTP_400_BAD_REQUEST)
         else:
             rid = kwargs.get('rid')
-            user_object = Records.objects.get(rid=rid)
+            user_object = Record.objects.get(rid=rid)
             user_object.delete()
             return Response("test ok", status=status.HTTP_200_OK)

@@ -12,9 +12,9 @@ app_name = 'api_00'
 urlpatterns = [
 
     path('records/',
-         api_views.RecordsView.as_view(),
+         api_views.RecordView.as_view(),
          name='index'),   # as_view 에 {'HTTP메서드': '뷰메서드'} dict 주자
     path('records/<str:rid>/',
-         api_views.RecordsView.as_view(),
+         api_views.RecordView.as_view(),
          name='rid'),   # as_view 에 {'HTTP메서드': '뷰메서드'} dict 주자
 ]

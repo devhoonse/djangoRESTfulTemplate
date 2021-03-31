@@ -3,7 +3,7 @@
 
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from .models import Records
+from .models import Record
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -19,7 +19,7 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 
 
 # SERIALIZER FOR SAMPLE MODEL
-class RecordsSerializer(serializers.ModelSerializer):
+class RecordSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Records
+        model = Record
         fields = '__all__'
