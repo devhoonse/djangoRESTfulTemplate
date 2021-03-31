@@ -23,7 +23,7 @@ class GroupViewSet(viewsets.ModelViewSet):
 
 
 # VIEW FOR SAMPLE MODEL
-class RecordsView(viewsets.ModelViewSet):
+class RecordsViewSet(viewsets.ModelViewSet):
     model = Records
     queryset = Records.objects.all().order_by('-created')
     serializer_class = RecordsSerializer

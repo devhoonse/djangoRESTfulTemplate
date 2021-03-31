@@ -25,7 +25,7 @@ from api_00 import views
 default_router = routers.DefaultRouter()
 default_router.register(r'users', views.UserViewSet)
 default_router.register(r'groups', views.GroupViewSet)
-default_router.register(r'api_00', views.RecordsView)
+default_router.register(r'api_00', views.RecordsViewSet)
 
 
 urlpatterns = [
