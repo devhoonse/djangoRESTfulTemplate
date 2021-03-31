@@ -22,4 +22,4 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 class RecordsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Records
-        fields = ('name', 'phone_number', 'address', 'created')
+        fields = '__all__'

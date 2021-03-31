@@ -1,15 +1,72 @@
-###
-
-# curl -d '{"name": "superman", "phone_number": "112", "address": "America"}' -H "Accept: application/json" -H "Content-Type: application/json" http://127.0.0.1:8000/api_00/
-POST http://127.0.0.1:8000/api_00/
+# curl  -XPOST -d '{"rid": "1", "name": "superman", "phone_number": "112", "address": "America"}' -H "Accept: application/json" -H "Content-Type: application/json" http://127.0.0.1:8000/api_00/records/
+POST http://127.0.0.1:8000/api_00/records/
 Accept: application/json
 Content-Type: application/json
 
 {
-  "name": "superman2",
+  "rid": "1",
+  "name": "superman",
   "phone_number": "112",
   "address": "America"
 }
 
+
 ###
+
+
+# curl  -XPOST -d '{"rid": "2", "name": "batman", "phone_number": "911", "address": "America"}' -H "Accept: application/json" -H "Content-Type: application/json" http://127.0.0.1:8000/api_00/records/
+POST http://127.0.0.1:8000/api_00/records/
+Accept: application/json
+Content-Type: application/json
+
+{
+  "rid": "2",
+  "name": "batman",
+  "phone_number": "911",
+  "address": "America"
+}
+
+
+###
+
+# curl -XGET -H "Accept: application/json" -H "Content-Tyontent-Type: application/json" http://127.0.0.1:8000/api_00/records/
+GET http://127.0.0.1:8000/api_00/records/
+Accept: application/json
+Content-Tyontent-Type: application/json
+
+###
+
+
+# curl -XGET -H "Accept: application/json" -H "Content-Type: application/json" http://127.0.0.1:8000/api_00/records/1/
+GET http://127.0.0.1:8000/api_00/records/1/
+Accept: application/json
+Content-Type: application/json
+
+###
+
+
+
+# curl -XPUT -d '{"rid": "1", "name": "superman_adj", "phone_number": "112", "address": "CaptainAmerica2"}' -H "Accept: application/json" -H "Content-Type: application/json" http://127.0.0.1:8000/api_00/records/1/
+PUT http://127.0.0.1:8000/api_00/records/1/
+Accept: application/json
+Content-Type: application/json
+
+{
+  "rid": "1",
+  "name": "superman_adj",
+  "phone_number": "112",
+  "address": "CaptainAmerica2"
+}
+
+###
+
+# curl -XDELETE -H "Accept: application/json" -H "Content-T
+#ype: application/json" http://127.0.0.1:8000/api_00/records/1/
+DELETE http://127.0.0.1:8000/api_00/records/1/
+Accept: application/json
+Content-T
+ype: application/json
+
+###
+
 
