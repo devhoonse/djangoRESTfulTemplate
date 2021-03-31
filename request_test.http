@@ -42,6 +42,16 @@ GET http://127.0.0.1:8000/api_00/records/1/
 Accept: application/json
 Content-Type: application/json
 
+
+###
+
+
+# curl -XGET -H "Accept: application/json" -H "Content-Type: application/json" http://127.0.0.1:8000/api_00/records/1/
+GET http://127.0.0.1:8000/api_00/records/55/
+Accept: application/json
+Content-Type: application/json
+
+
 ###
 
 
