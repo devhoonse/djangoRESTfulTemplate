@@ -32,22 +32,22 @@ class RecordsView(APIView):
     serializer_class = RecordsSerializer
 
     def post(self, request):
-        user_serializer = RecordsSerializer(data=request.data)  # Request의 data를 UserSerializer로 변환
+        user_serializer = RecordsSerializer(data=request.data)  # Request 의 data 를 Serializer 로 변환
 
         if user_serializer.is_valid():
-            user_serializer.save()  # UserSerializer의 유효성 검사를 한 뒤 DB에 저장
-            return Response(user_serializer.data, status=status.HTTP_201_CREATED)  # client에게 JSON response 전달
+            user_serializer.save()  # Serializer 의 유효성 검사를 한 뒤 DB에 저장
+            return Response(user_serializer.data, status=status.HTTP_201_CREATED)  # client 에게 JSON response 전달
         else:
             return Response(user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def get(self, request, **kwargs):
         if kwargs.get('rid') is None:
-            user_queryset = Records.objects.all()  # 모든 User의 정보를 불러온다.
+            user_queryset = Records.objects.all()  # 모든 Record 의 정보를 불러온다.
             user_queryset_serializer = RecordsSerializer(user_queryset, many=True)
             return Response(user_queryset_serializer.data, status=status.HTTP_200_OK)
         else:
             rid = kwargs.get('rid')
-            user_serializer = RecordsSerializer(Records.objects.get(rid=rid))  # id에 해당하는 User의 정보를 불러온다
+            user_serializer = RecordsSerializer(Records.objects.get(rid=rid))  # rid 에 해당하는 Record 의 정보를 불러온다
             return Response(user_serializer.data, status=status.HTTP_200_OK)
 
     def put(self, request, **kwargs):
