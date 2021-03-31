@@ -74,8 +74,7 @@ Content-Type: application/json
 #ype: application/json" http://127.0.0.1:8000/api_00/records/1/
 DELETE http://127.0.0.1:8000/api_00/records/1/
 Accept: application/json
-Content-T
-ype: application/json
+Content-Type: application/json
 
 ###
 
