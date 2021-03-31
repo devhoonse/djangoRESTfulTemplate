@@ -70,8 +70,7 @@ Content-Type: application/json
 
 ###
 
-# curl -XDELETE -H "Accept: application/json" -H "Content-T
-#ype: application/json" http://127.0.0.1:8000/api_00/records/1/
+# curl -XDELETE -H "Accept: application/json" -H "Content-Type: application/json" http://127.0.0.1:8000/api_00/records/1/
 DELETE http://127.0.0.1:8000/api_00/records/1/
 Accept: application/json
 Content-Type: application/json
