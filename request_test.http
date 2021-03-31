@@ -1,0 +1,15 @@
+###
+
+# curl -d '{"name": "superman", "phone_number": "112", "address": "America"}' -H "Accept: application/json" -H "Content-Type: application/json" http://127.0.0.1:8000/api_00/
+POST http://127.0.0.1:8000/api_00/
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "superman2",
+  "phone_number": "112",
+  "address": "America"
+}
+
+###
+
