@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-from django.conf.urls import url
-from django.urls import path, re_path
+from django.urls import path
 from api_00 import views as api_views
 
 

@@ -1,11 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.contrib.auth.models import User, Group
-from django.shortcuts import render
-from django.views import View
-from django.views.generic import ListView
 from rest_framework import viewsets, status
-from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -32,35 +28,35 @@ class RecordView(APIView):
     serializer_class = RecordSerializer
 
     def post(self, request):
-        user_serializer = RecordSerializer(data=request.data)  # Request 의 data 를 Serializer 로 변환
+        serializer = RecordSerializer(data=request.data)  # Request 의 data 를 Serializer 로 변환
 
-        if user_serializer.is_valid():
-            user_serializer.save()  # Serializer 의 유효성 검사를 한 뒤 DB에 저장
-            return Response(user_serializer.data, status=status.HTTP_201_CREATED)  # client 에게 JSON response 전달
+        if serializer.is_valid():
+            serializer.save()  # Serializer 의 유효성 검사를 한 뒤 DB에 저장
+            return Response(serializer.data, status=status.HTTP_201_CREATED)  # client 에게 JSON response 전달
         else:
-            return Response(user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def get(self, request, **kwargs):
         if kwargs.get('rid') is None:
-            user_queryset = Record.objects.all()  # 모든 Record 의 정보를 불러온다.
-            user_queryset_serializer = RecordSerializer(user_queryset, many=True)
-            return Response(user_queryset_serializer.data, status=status.HTTP_200_OK)
+            queryset = Record.objects.all()  # 모든 Record 의 정보를 불러온다.
+            queryset_serializer = RecordSerializer(queryset, many=True)
+            return Response(queryset_serializer.data, status=status.HTTP_200_OK)
         else:
             rid = kwargs.get('rid')
-            user_serializer = RecordSerializer(Record.objects.get(rid=rid))  # rid 에 해당하는 Record 의 정보를 불러온다
-            return Response(user_serializer.data, status=status.HTTP_200_OK)
+            serializer = RecordSerializer(Record.objects.get(rid=rid))  # rid 에 해당하는 Record 의 정보를 불러온다
+            return Response(serializer.data, status=status.HTTP_200_OK)
 
     def put(self, request, **kwargs):
         if kwargs.get('rid') is None:
             return Response("invalid request", status=status.HTTP_400_BAD_REQUEST)
         else:
             rid = kwargs.get('rid')
-            user_object = Record.objects.get(rid=rid)
+            record_object = Record.objects.get(rid=rid)
 
-            update_user_serializer = RecordSerializer(user_object, data=request.data)
-            if update_user_serializer.is_valid():
-                update_user_serializer.save()
-                return Response(update_user_serializer.data, status=status.HTTP_200_OK)
+            serializer = RecordSerializer(record_object, data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_200_OK)
             else:
                 return Response("invalid request", status=status.HTTP_400_BAD_REQUEST)
 
@@ -69,6 +65,6 @@ class RecordView(APIView):
             return Response("invalid request", status=status.HTTP_400_BAD_REQUEST)
         else:
             rid = kwargs.get('rid')
-            user_object = Record.objects.get(rid=rid)
-            user_object.delete()
+            record_object = Record.objects.get(rid=rid)
+            record_object.delete()
             return Response("test ok", status=status.HTTP_200_OK)
