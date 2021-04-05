@@ -29,6 +29,6 @@ default_router.register(r'groups', views.GroupViewSet)
 urlpatterns = [
     path('', include(default_router.urls)),
     path('api_00/', include('api_00.urls', namespace='api_00')),
-    path(r'api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
